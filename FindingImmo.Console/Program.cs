@@ -2,8 +2,7 @@
 using FindingImmo.Core.Scraping;
 using FindingImmo.Core.Scraping.LeBonCoin;
 using System;
-using System.Linq;
-using System.Diagnostics;
+using static System.Console;
 
 namespace FindingImmo.Console
 {
@@ -15,20 +14,28 @@ namespace FindingImmo.Console
 
             try
             {
-                IScrapingService scrapingService = new ScrapingService(new WebPagesScraper[] { new LeBonCoinPagesScraper(logger) }, logger);
-
-                var watch = Stopwatch.StartNew();
-                var result = scrapingService.ScrapAll();
-                watch.Stop();
-
-                logger.Info($"{result.Count()} results scraped in {watch.Elapsed}");
+                IAdsScrapingService scrapingService = GetAdsScrapingService(logger);
+                scrapingService.UpdateAll();
             }
             catch (Exception ex)
             {
                 logger.Error(ex);
             }
 
-            System.Console.ReadKey();
+            ReadKey();
+        }
+
+        private static IAdsScrapingService GetAdsScrapingService(ILogger logger)
+        {
+            return new AdsScrapingService(
+                new AdsProvider[]
+                {
+                    new LeBoinCoinAdProvider(
+                        new LeBonCoinAdReferencesScraper(logger), new LeBonCoinAdScraper(logger), logger
+                    )
+                },
+                logger
+            );
         }
     }
 }

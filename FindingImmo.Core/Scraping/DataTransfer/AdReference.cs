@@ -12,5 +12,10 @@ namespace FindingImmo.Core.Scraping.DataTransfer
             this.Reference = reference ?? throw new ArgumentNullException(nameof(reference));
             this.Url = url ?? throw new ArgumentNullException(nameof(url));
         }
+
+        public override string ToString()
+        {
+            return this.Reference;
+        }
     }
 }

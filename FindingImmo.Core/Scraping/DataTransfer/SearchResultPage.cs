@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace FindingImmo.Core.Scraping.DataTransfer
 {
-    public sealed class WebPage
+    public sealed class SearchResultPage
     {
         public int Number { get; }
         public IEnumerable<AdReference> Ads { get; }
 
-        public WebPage(int pageNumber, IEnumerable<AdReference> ads)
+        public SearchResultPage(int pageNumber, IEnumerable<AdReference> ads)
         {
             if (ads == null)
                 throw new ArgumentNullException(nameof(ads));

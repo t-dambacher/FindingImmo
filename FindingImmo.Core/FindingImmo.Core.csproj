@@ -18,4 +18,8 @@
     <PackageReference Include="Selenium.WebDriver" Version="3.8.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Domain\Data\" />
+  </ItemGroup>
+
 </Project>
