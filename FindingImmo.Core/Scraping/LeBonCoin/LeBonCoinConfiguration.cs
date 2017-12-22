@@ -9,6 +9,6 @@
         public int MinRooms => 4;
         public int MaxRooms => 8;
         public int LastPageToCheck => 20;
-        public string RootUrl => "https://www.leboncoin.fr/ventes_immobilieres/offres/alsace/";
+        public string RootUrl => "https://www.leboncoin.fr/ventes_immobilieres/offres/alsace/bas_rhin/";
     }
 }

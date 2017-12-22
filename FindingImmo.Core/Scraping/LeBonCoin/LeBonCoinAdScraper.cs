@@ -24,7 +24,7 @@ namespace FindingImmo.Core.Scraping.LeBonCoin
 
             driver.Navigate().GoToUrl(reference.Url);
 
-            return new Ad(Website.LeBonCoin, reference.Reference)
+            Ad res = new Ad(Website.LeBonCoin, reference.Reference)
             {
                 Price = GetPrice(driver),
                 PostalCode = GetPostalCode(driver),
@@ -33,8 +33,56 @@ namespace FindingImmo.Core.Scraping.LeBonCoin
                 Surface = GetSurface(driver),
                 GES = GetGES(driver),
                 EnergyClass = GetEnergyClass(driver),
-                Description = GetDescription(driver)
+                Description = GetDescription(driver),
+                Title = GetTitle(driver)
             };
+
+            res.Pictures = GetPictures(driver, res);
+
+            return res;
+        }
+
+        private string GetTitle(IWebDriver driver)
+        {
+            return driver.FindElements(By.TagName("h1")).SingleOrDefault(i => i.GetAttribute("itemprop") == "name")?.Text ?? "";
+        }
+
+        private IList<Picture> GetPictures(IWebDriver driver, Ad ad)
+        {
+            List<Picture> res = new List<Picture>();
+
+            IWebElement mainImage = driver.FindElements(By.TagName("img")).SingleOrDefault(i => i.GetAttribute("itemprop") == "image");
+            if (mainImage != null)
+            {
+                res.Add(GetPicture(ad, mainImage.GetAttribute("src")));
+                for (int i = 1, thumbsCount = GetThumbsCount(driver); i < thumbsCount; ++i)
+                {
+                    res.Add(
+                        GetPicture(
+                            ad,
+                            driver.FindElement(By.Id("thumb_" + i)).FindElement(By.TagName("img")).GetAttribute("src")
+                        )
+                    );
+                }
+            }
+
+            return res;
+        }
+
+        private int GetThumbsCount(IWebDriver driver)
+        {
+            string stringThumbsCount = driver.FindElements(By.ClassName("item_photo")).SingleOrDefault()?.Text.Replace("photos disponibles", "")?.Trim();
+            int thumbsCount = 0;
+            int.TryParse(stringThumbsCount, out thumbsCount);
+            return thumbsCount;
+        }
+
+        private Picture GetPicture(Ad ad, string url)
+        {
+            url = url.Replace("ad-thumb", "ad-large").Replace("ad-image", "ad-large");
+            // var size = ImageTools.GetWebDimensions(url);
+            return new Picture(ad, url, 0, 0); //size.Width, size.Height);
+            // to much problems occures for now when using this. the whole process is slown, and the retrieved informations are not even ok (because LBC & grey borders on the frames)
         }
 
         private string GetDescription(IWebDriver driver)
@@ -49,8 +97,9 @@ namespace FindingImmo.Core.Scraping.LeBonCoin
             if (index >= 0)
                 ges = ges.Substring(0, index);
 
+            var dummyValues = new HashSet<string>(new[] { "Non", "Vierge" }, StringComparer.OrdinalIgnoreCase);
             GES res = GES.Unknown;
-            if (!Enum.TryParse<GES>(ges, out res))
+            if (!Enum.TryParse<GES>(ges, out res) && !dummyValues.Contains(ges))
                 this._logger.Error($"Unknown GES value : {ges}");
 
             return res;
@@ -63,8 +112,9 @@ namespace FindingImmo.Core.Scraping.LeBonCoin
             if (index >= 0)
                 energyClass = energyClass.Substring(0, index);
 
+            var dummyValues = new HashSet<string>(new[] { "Non", "Vierge" }, StringComparer.OrdinalIgnoreCase);
             EnergyClass res = EnergyClass.Unknown;
-            if (!Enum.TryParse<EnergyClass>(energyClass, out res))
+            if (!Enum.TryParse<EnergyClass>(energyClass, out res) && !dummyValues.Contains(energyClass))
                 this._logger.Error($"Unknown energy class value : {energyClass}");
 
             return res;

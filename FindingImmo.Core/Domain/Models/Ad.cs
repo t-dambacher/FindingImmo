@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FindingImmo.Core.Domain.Models
 {
@@ -7,8 +8,8 @@ namespace FindingImmo.Core.Domain.Models
         public long Id { get; set; }
         public string ExternalId { get; set; }
         public DateTime Creation { get; set; }
+        public DateTime LastScraping { get; set; }
         public Website Origin { get; set; }
-
         public int Price { get; set; }
         public string PostalCode { get; set; }
         public bool IsPro { get; set; }
@@ -17,11 +18,16 @@ namespace FindingImmo.Core.Domain.Models
         public GES GES { get; set; }
         public EnergyClass EnergyClass { get; set; }
         public string Description { get; set; }
+        public string Title { get; set; }
+        public virtual ICollection<Picture> Pictures { get; set; }
 
         public Ad()
-        { }
+        {
+            this.Pictures = new List<Picture>();
+        }
 
         public Ad(Website origin, string externalId)
+             : this()
         {
             if (!Enum.IsDefined(typeof(Website), origin))
                 throw new ArgumentException(nameof(origin));
@@ -31,7 +37,7 @@ namespace FindingImmo.Core.Domain.Models
 
             this.ExternalId = externalId;
             this.Origin = origin;
-            this.Creation = DateTime.Now;
+            this.LastScraping = this.Creation = DateTime.Now;
         }
     }
 }

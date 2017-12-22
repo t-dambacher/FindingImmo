@@ -1,9 +1,6 @@
 ﻿using FindingImmo.Core.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FindingImmo.Core.Domain.Data
 {
@@ -15,7 +12,20 @@ namespace FindingImmo.Core.Domain.Data
             builder.HasKey(x => x.Id);
 
             builder.Property(a => a.Id).HasColumnName("id").ValueGeneratedOnAdd();
-            
+            builder.Property(a => a.Creation).HasColumnName("date_creation").IsRequired();
+            builder.Property(a => a.Description).HasColumnName("description").IsRequired();
+            builder.Property(a => a.EnergyClass).HasColumnName("classe_energie").IsRequired();
+            builder.Property(a => a.ExternalId).HasColumnName("reference_externe").IsRequired();
+            builder.Property(a => a.GES).HasColumnName("GES").IsRequired();
+            builder.Property(a => a.IsPro).HasColumnName("est_agence").IsRequired();
+            builder.Property(a => a.LastScraping).HasColumnName("date_derniere_maj").IsRequired();
+            builder.Property(a => a.Origin).HasColumnName("site_origine").IsRequired();
+            builder.Property(a => a.PostalCode).HasColumnName("code_postal").HasMaxLength(5).IsRequired();
+            builder.Property(a => a.Price).HasColumnName("prix").IsRequired();
+            builder.Property(a => a.RoomsCount).HasColumnName("nombre_pieces").IsRequired();
+            builder.Property(a => a.Surface).HasColumnName("surface").IsRequired();
+            builder.Property(a => a.Title).HasColumnName("titre").IsRequired();
+            builder.HasMany(a => a.Pictures).WithOne(p => p.Ad).HasForeignKey(p => p.AdId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace FindingImmo.Core.Infrastructure
 
         public static void Error(Exception ex)
         {
-            Instance.Error(ex);
+            Instance.Fatal(ex);
         }
     }
 }

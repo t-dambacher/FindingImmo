@@ -1,6 +1,5 @@
 ﻿using FindingImmo.Core.Infrastructure;
 using FindingImmo.Core.Scraping;
-using FindingImmo.Core.Scraping.LeBonCoin;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using static System.Console;
@@ -9,7 +8,7 @@ namespace FindingImmo.Console
 {
     public class Program
     {
-        private static IServiceProvider ServiceProvider { get; } = ConfigureServices();
+        private static IServiceProvider ServiceProvider { get; } = Bootstrap();
 
         public static void Main(string[] args)
         {
@@ -22,17 +21,15 @@ namespace FindingImmo.Console
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.Fatal(ex);
             }
 
             ReadKey();
         }
 
-        private static IServiceProvider ConfigureServices()
+        private static IServiceProvider Bootstrap()
         {
-            IServiceCollection services = new ServiceCollection();
-            DependenciesConfiguration.Configure(services);
-            return services.BuildServiceProvider();
+            return Startup.Bootstrap(new ServiceCollection());
         }
     }
 }

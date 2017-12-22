@@ -1,4 +1,5 @@
-﻿using FindingImmo.Core.Infrastructure;
+﻿using FindingImmo.Core.Domain.DataAccess;
+using FindingImmo.Core.Infrastructure;
 using FindingImmo.Core.Scraping.DataTransfer;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -13,8 +14,8 @@ namespace FindingImmo.Core.Scraping.LeBonCoin
         private readonly ILogger _logger;
         private readonly LeBonCoinConfiguration _configuration;
 
-        public LeBonCoinAdReferencesScraper(ILogger logger)
-            : base()
+        public LeBonCoinAdReferencesScraper(IAdRepository repository, ILogger logger)
+            : base(repository)
         {
             this._logger = logger;
             this._configuration = new LeBonCoinConfiguration();
@@ -59,16 +60,12 @@ namespace FindingImmo.Core.Scraping.LeBonCoin
 
         protected override IEnumerable<AdReference> GetSearchResultsFromCurrentPage(IWebDriver driver)
         {
-            try
-            {
-                IEnumerable<IWebElement> lis = driver.FindElement(By.Id("listingAds")).FindElement(By.TagName("section")).FindElement(By.TagName("section")).FindElements(By.TagName("li"));
-                return lis.Select(GetSearchResult).ToList();
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error("Error while accessing the search result of the current page", ex);
-                return Enumerable.Empty<AdReference>();
-            }
+            return driver.FindElement(By.Id("listingAds"))
+                .FindElement(By.TagName("section"))
+                .FindElement(By.TagName("section"))
+                .FindElements(By.TagName("li"))
+                .Select(GetSearchResult)
+                .ToList();
         }
 
         private void SetComboValue(IWebDriver driver, string comboId, string value)

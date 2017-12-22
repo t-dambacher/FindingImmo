@@ -2,7 +2,6 @@
 using FindingImmo.Core.Infrastructure;
 using FindingImmo.Core.Scraping.DataTransfer;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
 using System.Collections.Generic;
 
 namespace FindingImmo.Core.Scraping
@@ -22,9 +21,7 @@ namespace FindingImmo.Core.Scraping
 
         public IEnumerable<Ad> Provide()
         {
-            List<Ad> res = new List<Ad>();
-
-            using (IWebDriver driver = GetWebDriver())
+            using (IWebDriver driver = new WebDriver(this._logger))
             {
                 foreach (AdReference reference in this._referencesScraper.Scrap(driver))
                 {
@@ -35,22 +32,9 @@ namespace FindingImmo.Core.Scraping
                         continue;
                     }
 
-                    res.Add(ad);
+                    yield return ad;
                 }
             }
-
-            return res;
-        }
-
-        private IWebDriver GetWebDriver()
-        {
-            return new FirefoxDriver(
-                new FirefoxOptions()
-                {
-                    LogLevel = FirefoxDriverLogLevel.Error,
-                    PageLoadStrategy = PageLoadStrategy.Eager
-                }
-            );
         }
     }
 }

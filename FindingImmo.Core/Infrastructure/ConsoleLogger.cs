@@ -4,7 +4,7 @@ namespace FindingImmo.Core.Infrastructure
 {
     sealed internal class ConsoleLogger : ILogger
     {
-        public void Error(Exception ex)
+        public void Fatal(Exception ex)
         {
             if (ex == null)
                 throw new ArgumentNullException(nameof(ex));
@@ -18,7 +18,7 @@ namespace FindingImmo.Core.Infrastructure
                 throw new ArgumentNullException(nameof(message));
 
             if (ex != null)
-                message += (message + Environment.NewLine + ex.ToString());
+                message += (Environment.NewLine + ex.ToString());
 
             Log(message);
         }

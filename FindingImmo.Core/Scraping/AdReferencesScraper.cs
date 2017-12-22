@@ -1,4 +1,5 @@
-﻿using FindingImmo.Core.Scraping.DataTransfer;
+﻿using FindingImmo.Core.Domain.DataAccess;
+using FindingImmo.Core.Scraping.DataTransfer;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,15 @@ namespace FindingImmo.Core.Scraping
 {
     internal abstract class AdReferencesScraper
     {
-        protected AdReferencesScraper()
-        { }
+        private readonly IAdRepository _repository;
+
+        protected AdReferencesScraper(IAdRepository repository)
+        {
+            this._repository = repository;
+        }
 
         public IEnumerable<AdReference> Scrap(IWebDriver driver)
         {
-            List<AdReference> res = new List<AdReference>();
             bool keepScraping;
 
             LaunchSearch(driver);
@@ -21,16 +25,26 @@ namespace FindingImmo.Core.Scraping
             {
                 keepScraping = false;
 
-                IEnumerable<AdReference> adReferences = GetSearchResultsFromCurrentPage(driver);
-                if (adReferences != null && adReferences.Any())
+                IEnumerable<AdReference> adReferences = GetSearchResultsFromCurrentPage(driver) ?? Enumerable.Empty<AdReference>();
+                string currentUrl = driver.Url;
+
+                if (!adReferences.All(AlreadyExists))
                 {
-                    res.AddRange(adReferences);
+                    foreach (AdReference adReference in adReferences)
+                        yield return adReference;
+
+                    if (driver.Url != currentUrl)   // As deffered execution might have change the url of the current page... we should reset the context to it previous state
+                        driver.Navigate().GoToUrl(currentUrl);
+
                     keepScraping = MoveToNextResultPage(driver);
                 }
             }
             while (keepScraping);
+        }
 
-            return res;
+        private bool AlreadyExists(AdReference reference)
+        {
+            return reference != null && this._repository.CheckIfExternalIdExists(reference.Reference);
         }
 
         protected abstract void LaunchSearch(IWebDriver driver);

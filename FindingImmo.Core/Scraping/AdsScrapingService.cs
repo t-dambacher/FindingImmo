@@ -1,9 +1,8 @@
-﻿using FindingImmo.Core.Domain.Models;
+﻿using FindingImmo.Core.Domain.DataAccess;
+using FindingImmo.Core.Domain.Models;
 using FindingImmo.Core.Infrastructure;
-using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 
 namespace FindingImmo.Core.Scraping
 {
@@ -11,29 +10,23 @@ namespace FindingImmo.Core.Scraping
     {
         private readonly IEnumerable<AdsProvider> _providers;
         private readonly ILogger _logger;
+        private readonly IAdRepository _repository;
 
-        public AdsScrapingService(IEnumerable<AdsProvider> providers, ILogger logger)
+        public AdsScrapingService(IEnumerable<AdsProvider> providers, IAdRepository repository, ILogger logger)
         {
             this._providers = providers;
             this._logger = logger;
+            this._repository = repository;
         }
 
         public void UpdateAll()
         {
-#if DEBUG
-            Stopwatch watch = Stopwatch.StartNew();
-#endif      
-            IEnumerable<Ad> webAds = ScrapAll();
-
-#if DEBUG
-            watch.Stop();
-            this._logger.Info($"{webAds.Count()} results scraped in {watch.Elapsed}");
-#endif
+            this._repository.SaveIfNotExist(ScrapAll());
         }
 
         public IEnumerable<Ad> ScrapAll()
         {
-            return this._providers.SelectMany(p => p.Provide()).ToList();
+            return this._providers.SelectMany(p => p.Provide());
         }
     }
 }
