@@ -1,6 +1,7 @@
 ﻿using FindingImmo.Core.Infrastructure;
 using FindingImmo.Core.Scraping;
 using FindingImmo.Core.Scraping.LeBonCoin;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using static System.Console;
 
@@ -8,13 +9,15 @@ namespace FindingImmo.Console
 {
     public class Program
     {
+        private static IServiceProvider ServiceProvider { get; } = ConfigureServices();
+
         public static void Main(string[] args)
         {
-            ILogger logger = Logger.Instance;
+            ILogger logger = ServiceProvider.GetService<ILogger>();
 
             try
             {
-                IAdsScrapingService scrapingService = GetAdsScrapingService(logger);
+                IAdsScrapingService scrapingService = ServiceProvider.GetService<IAdsScrapingService>();
                 scrapingService.UpdateAll();
             }
             catch (Exception ex)
@@ -25,17 +28,11 @@ namespace FindingImmo.Console
             ReadKey();
         }
 
-        private static IAdsScrapingService GetAdsScrapingService(ILogger logger)
+        private static IServiceProvider ConfigureServices()
         {
-            return new AdsScrapingService(
-                new AdsProvider[]
-                {
-                    new LeBoinCoinAdProvider(
-                        new LeBonCoinAdReferencesScraper(logger), new LeBonCoinAdScraper(logger), logger
-                    )
-                },
-                logger
-            );
+            IServiceCollection services = new ServiceCollection();
+            DependenciesConfiguration.Configure(services);
+            return services.BuildServiceProvider();
         }
     }
 }
