@@ -1,6 +1,6 @@
 ﻿namespace FindingImmo.Core.Domain.Models
 {
-    public enum GES
+    public enum GES : int
     {
         Unknown = 0,
         A = 1,

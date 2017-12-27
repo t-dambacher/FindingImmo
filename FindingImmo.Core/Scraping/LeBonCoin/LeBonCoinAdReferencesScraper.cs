@@ -1,5 +1,5 @@
 ﻿using FindingImmo.Core.Domain.DataAccess;
-using FindingImmo.Core.Infrastructure;
+using FindingImmo.Core.Infrastructure.Logging;
 using FindingImmo.Core.Scraping.DataTransfer;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;

@@ -1,4 +1,4 @@
-﻿using FindingImmo.Core.Infrastructure;
+﻿using FindingImmo.Core.Infrastructure.Logging;
 
 namespace FindingImmo.Core.Scraping.LeBonCoin
 {

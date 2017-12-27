@@ -1,4 +1,5 @@
-﻿using FindingImmo.Core.Domain.Data;
+﻿using FindingImmo.Core.Domain.DataAccess;
+using FindingImmo.Core.Infrastructure.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;

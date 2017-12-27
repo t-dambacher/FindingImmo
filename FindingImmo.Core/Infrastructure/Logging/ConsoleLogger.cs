@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FindingImmo.Core.Infrastructure
+namespace FindingImmo.Core.Infrastructure.Logging
 {
     sealed internal class ConsoleLogger : ILogger
     {

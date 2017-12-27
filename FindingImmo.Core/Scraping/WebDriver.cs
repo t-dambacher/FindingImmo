@@ -1,6 +1,7 @@
-﻿using FindingImmo.Core.Infrastructure;
+﻿using FindingImmo.Core.Infrastructure.Logging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.PhantomJS;
 using System;
 using System.Collections.ObjectModel;
 
@@ -93,6 +94,22 @@ namespace FindingImmo.Core.Scraping
 
         private IWebDriver BuildNewDriver()
         {
+            bool usePhantomJS = true;
+            if (usePhantomJS)
+            {
+                PhantomJSDriver driver = new PhantomJSDriver(
+                    new PhantomJSOptions()
+                    {
+                        PageLoadStrategy = PageLoadStrategy.Eager,
+                        UnhandledPromptBehavior = UnhandledPromptBehavior.Dismiss,
+                    }
+                );
+
+                driver.Manage().Window.Maximize();
+
+                return driver;
+            }
+
             return new FirefoxDriver(
                new FirefoxOptions()
                {

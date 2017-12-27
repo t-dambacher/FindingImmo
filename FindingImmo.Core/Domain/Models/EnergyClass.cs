@@ -1,6 +1,6 @@
 ﻿namespace FindingImmo.Core.Domain.Models
 {
-    public enum EnergyClass
+    public enum EnergyClass : int
     {
         Unknown = 0,
         A = 1,

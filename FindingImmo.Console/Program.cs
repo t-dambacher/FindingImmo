@@ -1,4 +1,5 @@
 ﻿using FindingImmo.Core.Infrastructure;
+using FindingImmo.Core.Infrastructure.Logging;
 using FindingImmo.Core.Scraping;
 using Microsoft.Extensions.DependencyInjection;
 using System;

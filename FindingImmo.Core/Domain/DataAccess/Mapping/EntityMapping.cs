@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FindingImmo.Core.Domain.Data
+namespace FindingImmo.Core.Domain.DataAccess.Mapping
 {
     public abstract class EntityMapping
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using FindingImmo.Core.Domain.Models;
-using FindingImmo.Core.Infrastructure;
+using FindingImmo.Core.Infrastructure.Logging;
 using FindingImmo.Core.Scraping.DataTransfer;
 using OpenQA.Selenium;
 

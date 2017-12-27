@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace FindingImmo.Core.Domain.Data
+namespace FindingImmo.Core.Domain.DataAccess.Mapping
 {
     public static class ModelBuilderExtensions
     {

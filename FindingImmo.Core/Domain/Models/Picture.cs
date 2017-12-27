@@ -2,7 +2,7 @@
 
 namespace FindingImmo.Core.Domain.Models
 {
-    public class Picture
+    public class Picture : IEntity
     {
         public long Id { get; set; }
         public long AdId { get; set; }

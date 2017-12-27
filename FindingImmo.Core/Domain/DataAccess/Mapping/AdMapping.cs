@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FindingImmo.Core.Domain.Data
+namespace FindingImmo.Core.Domain.DataAccess.Mapping
 {
     public sealed class AdMapping : EntityMapping<Ad>
     {
@@ -26,6 +26,7 @@ namespace FindingImmo.Core.Domain.Data
             builder.Property(a => a.Surface).HasColumnName("surface").IsRequired();
             builder.Property(a => a.Title).HasColumnName("titre").IsRequired();
             builder.HasMany(a => a.Pictures).WithOne(p => p.Ad).HasForeignKey(p => p.AdId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(a => a.Features).WithOne(f => f.Ad).HasForeignKey<Features>(f => f.AdId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

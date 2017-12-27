@@ -1,5 +1,4 @@
-﻿using FindingImmo.Core.Domain.Data;
-using FindingImmo.Core.Domain.Models;
+﻿using FindingImmo.Core.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

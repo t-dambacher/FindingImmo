@@ -19,14 +19,17 @@ namespace FindingImmo.Core.Infrastructure
         {
             Assembly assembly = Assembly.GetEntryAssembly();
             if (assembly == null)
-                return "Web.config";
+                return "FindingImmo.Console.exe.config"; // todo: should be "Web.config" when running as a website
 
             return Path.GetFileName(assembly.Location) + ".config";
         }
 
         public static string ConnectionString
         {
-            get { return "Data Source=Database.db"; }
+            get
+            {
+                return @"Data Source=..\..\..\Database.db";
+            }
         }
 
         public static void Bootstrap()

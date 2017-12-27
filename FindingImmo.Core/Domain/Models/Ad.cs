@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FindingImmo.Core.Domain.Models
 {
-    public class Ad
+    public class Ad : IEntity
     {
         public long Id { get; set; }
         public string ExternalId { get; set; }
@@ -20,6 +20,7 @@ namespace FindingImmo.Core.Domain.Models
         public string Description { get; set; }
         public string Title { get; set; }
         public virtual ICollection<Picture> Pictures { get; set; }
+        public virtual Features Features { get; set; }
 
         public Ad()
         {

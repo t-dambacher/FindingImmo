@@ -1,9 +1,9 @@
 ﻿namespace FindingImmo.Core.Domain.Models
 {
-    public enum Website : int
+    public enum BooleanFeatureResult : int
     {
         Unknown = 0,
-        LeBonCoin = 1,
-        SeLoger = 2
+        False = 1,
+        True = 2
     }
 }
