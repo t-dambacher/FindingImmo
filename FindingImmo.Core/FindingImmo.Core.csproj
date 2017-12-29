@@ -26,4 +26,8 @@
     <PackageReference Include="Selenium.WebDriver" Version="3.8.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FindingImmo.Core.StanfordNlp\FindingImmo.Core.StanfordNlp.csproj" />
+  </ItemGroup>
+
 </Project>

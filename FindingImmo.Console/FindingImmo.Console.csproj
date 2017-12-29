@@ -176,6 +176,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FindingImmo.Core.StanfordNlp\FindingImmo.Core.StanfordNlp.csproj">
+      <Project>{d9846c38-ca98-41a1-8432-a10e918f6a4f}</Project>
+      <Name>FindingImmo.Core.StanfordNlp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FindingImmo.Core\FindingImmo.Core.csproj">
       <Project>{7ecfbc2d-f0dc-4ea1-ac2b-a221abf2fe10}</Project>
       <Name>FindingImmo.Core</Name>

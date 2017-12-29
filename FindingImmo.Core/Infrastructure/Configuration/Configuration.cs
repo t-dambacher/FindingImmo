@@ -11,7 +11,7 @@ namespace FindingImmo.Core.Infrastructure
         private static IConfigurationRoot Configure()
         {
             return new ConfigurationBuilder()
-                .AddXmlFile(GetConfigurationFileName())
+                .AddXmlFile(GetConfigurationFileName(), optional: true)
                 .Build();
         }
 
