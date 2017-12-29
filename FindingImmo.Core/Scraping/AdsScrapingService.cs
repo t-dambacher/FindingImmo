@@ -19,9 +19,11 @@ namespace FindingImmo.Core.Scraping
             this._repository = repository;
         }
 
-        public void UpdateAll()
+        public IEnumerable<Ad> UpdateAll()
         {
-            this._repository.SaveIfNotExist(ScrapAll());
+            IEnumerable<Ad> all = ScrapAll();
+            this._repository.SaveIfNotExist(all);
+            return all;
         }
 
         public IEnumerable<Ad> ScrapAll()

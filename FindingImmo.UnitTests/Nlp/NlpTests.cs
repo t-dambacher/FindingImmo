@@ -1,6 +1,6 @@
-﻿using FindingImmo.Core.StanfordNlp;
+﻿using FindingImmo.Core.Nlp;
+using FindingImmo.Core.StanfordNlp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Linq;
 
 namespace FindingImmo.UnitTests.Nlp

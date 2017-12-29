@@ -2,8 +2,10 @@
 using FindingImmo.Core.Featurization;
 using FindingImmo.Core.Featurization.Evaluators;
 using FindingImmo.Core.Infrastructure.Logging;
+using FindingImmo.Core.Nlp;
 using FindingImmo.Core.Scraping;
 using FindingImmo.Core.Scraping.LeBonCoin;
+using FindingImmo.Core.StanfordNlp;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,10 +27,11 @@ namespace FindingImmo.Core.Infrastructure.DependencyInjection
             services.AddTransient<LeBonCoinAdReferencesScraper>();
             services.AddTransient<LeBonCoinAdScraper>();
             services.AddTransient<IFeaturesService, FeaturesService>();
+            services.AddSingleton<StanfordNlpService>();
+            services.AddTransient<INlpService, NlpService>();
 
             ConfigureFeatures(services);
         }
-
 
         private static void ConfigureFeatures(IServiceCollection services)
         {

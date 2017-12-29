@@ -283,7 +283,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseTests.cs" />
-    <Compile Include="Nlp\NlpService.cs" />
     <Compile Include="Nlp\NlpTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

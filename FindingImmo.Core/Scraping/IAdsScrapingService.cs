@@ -7,6 +7,6 @@ namespace FindingImmo.Core.Scraping
     {
         IEnumerable<Ad> ScrapAll();
 
-        void UpdateAll();
+        IEnumerable<Ad> UpdateAll();
     }
 }

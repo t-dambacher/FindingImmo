@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FindingImmo.UnitTests.Nlp
+namespace FindingImmo.Core.Nlp
 {
-    public sealed class NlpService
+    public sealed class NlpService : INlpService
     {
         private readonly StanfordNlpService _nlpService;
 
