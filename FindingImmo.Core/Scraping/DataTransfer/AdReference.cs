@@ -9,8 +9,14 @@ namespace FindingImmo.Core.Scraping.DataTransfer
 
         public AdReference(string reference, string url)
         {
-            this.Reference = reference ?? throw new ArgumentNullException(nameof(reference));
-            this.Url = url ?? throw new ArgumentNullException(nameof(url));
+            if (reference == null)
+                throw new ArgumentNullException(nameof(reference));
+
+            if (url == null)
+                throw new ArgumentNullException(nameof(url));
+
+            this.Reference = reference;
+            this.Url = url;
         }
 
         public override string ToString()

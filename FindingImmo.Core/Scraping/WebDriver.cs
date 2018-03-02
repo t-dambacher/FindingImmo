@@ -24,7 +24,11 @@ namespace FindingImmo.Core.Scraping
 
         private IWebDriver _decorated;
 
-        public string Url { get => _decorated.Url; set => _decorated.Url = value; }
+        public string Url
+        {
+            get { return _decorated.Url; }
+            set { _decorated.Url = value; }
+        }
 
         public string Title => _decorated.Title;
 

@@ -1,8 +1,4 @@
-﻿using FindingImmo.Core.Domain.Models;
-using FindingImmo.Core.Infrastructure;
-using FindingImmo.Core.Infrastructure.Logging;
-using FindingImmo.Core.Nlp;
-using FindingImmo.Core.Scraping;
+﻿using FindingImmo.Core.Infrastructure.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;

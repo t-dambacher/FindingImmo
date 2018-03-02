@@ -173,15 +173,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FindingImmo.Core.StanfordNlp\FindingImmo.Core.StanfordNlp.csproj">
-      <Project>{d9846c38-ca98-41a1-8432-a10e918f6a4f}</Project>
-      <Name>FindingImmo.Core.StanfordNlp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FindingImmo.Core\FindingImmo.Core.csproj">
-      <Project>{7ecfbc2d-f0dc-4ea1-ac2b-a221abf2fe10}</Project>
+      <Project>{f3ea3d59-17b3-4967-a03b-2302dda81d75}</Project>
       <Name>FindingImmo.Core</Name>
     </ProjectReference>
   </ItemGroup>
