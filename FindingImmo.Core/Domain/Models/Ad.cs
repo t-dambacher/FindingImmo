@@ -1,30 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using FindingImmo.Core.Scraping.DataTransfer;
 
 namespace FindingImmo.Core.Domain.Models
 {
-    public class Ad : IEntity
+    public class Ad
     {
         public long Id { get; set; }
         public string ExternalId { get; set; }
-        public DateTime Creation { get; set; }
-        public DateTime LastScraping { get; set; }
-        public Website Origin { get; set; }
-        public int Price { get; set; }
-        public string PostalCode { get; set; }
-        public bool IsPro { get; set; }
-        public int RoomsCount { get; set; }
-        public int Surface { get; set; }
-        public GES GES { get; set; }
-        public EnergyClass EnergyClass { get; set; }
         public string Description { get; set; }
-        public string Title { get; set; }
-        public virtual ICollection<Picture> Pictures { get; set; }
-        public virtual Features Features { get; set; }
+        public DateTime Creation { get; set; }
+        public Website Origin { get; set; }
+        public string PictureUrl { get; set; }
+        public string DetailUrl { get; set; }
+        public State State { get; set; }
 
         public Ad()
         {
-            this.Pictures = new List<Picture>();
+            this.Creation = DateTime.Now;
+            this.State = State.Unknown;
         }
 
         public Ad(Website origin, string externalId)
@@ -38,7 +32,19 @@ namespace FindingImmo.Core.Domain.Models
 
             this.ExternalId = externalId;
             this.Origin = origin;
-            this.LastScraping = this.Creation = DateTime.Now;
+        }
+
+        public Ad(AdReference model, Website origin)
+            : this()
+        {
+            if (model == null)
+                throw new ArgumentNullException(nameof(model));
+
+            this.Description = model.Description;
+            this.DetailUrl = model.DetailUrl;
+            this.ExternalId = model.Reference;
+            this.Origin = origin;
+            this.PictureUrl = model.PictureUrl;
         }
     }
 }

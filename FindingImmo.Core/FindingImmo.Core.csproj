@@ -168,23 +168,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\DataAccess\AdRepository.cs" />
-    <Compile Include="Domain\DataAccess\FeaturesRepository.cs" />
     <Compile Include="Domain\DataAccess\IAdRepository.cs" />
-    <Compile Include="Domain\DataAccess\IFeaturesRepository.cs" />
     <Compile Include="Domain\DataAccess\ImmoDbContext.cs" />
     <Compile Include="Domain\DataAccess\ImmoDbContextFactory.cs" />
     <Compile Include="Domain\DataAccess\Mapping\AdMapping.cs" />
     <Compile Include="Domain\DataAccess\Mapping\EntityMapping.cs" />
-    <Compile Include="Domain\DataAccess\Mapping\FeaturesMapping.cs" />
     <Compile Include="Domain\DataAccess\Mapping\ModelBuilderExtensions.cs" />
-    <Compile Include="Domain\DataAccess\Mapping\PictureMapping.cs" />
     <Compile Include="Domain\Models\Ad.cs" />
-    <Compile Include="Domain\Models\BooleanFeatureResult.cs" />
-    <Compile Include="Domain\Models\EnergyClass.cs" />
-    <Compile Include="Domain\Models\Features.cs" />
-    <Compile Include="Domain\Models\GES.cs" />
-    <Compile Include="Domain\Models\IEntity.cs" />
-    <Compile Include="Domain\Models\Picture.cs" />
+    <Compile Include="Domain\Models\State.cs" />
     <Compile Include="Domain\Models\Website.cs" />
     <Compile Include="Infrastructure\Configuration\Configuration.cs" />
     <Compile Include="Infrastructure\DependencyInjection\DependenciesConfiguration.cs" />
@@ -192,32 +183,21 @@
     <Compile Include="Infrastructure\Logging\ILogger.cs" />
     <Compile Include="Infrastructure\Logging\Logger.cs" />
     <Compile Include="Infrastructure\Startup.cs" />
-    <Compile Include="Migrations\20171227132513_InitialMigration.cs" />
-    <Compile Include="Migrations\20171227132513_InitialMigration.Designer.cs">
-      <DependentUpon>20171227132513_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20171227133637_AddFeatures.cs" />
-    <Compile Include="Migrations\20171227133637_AddFeatures.Designer.cs">
-      <DependentUpon>20171227133637_AddFeatures.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\ImmoDbContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scraping\AdReferencesScraper.cs" />
-    <Compile Include="Scraping\AdScraper.cs" />
-    <Compile Include="Scraping\AdsProvider.cs" />
-    <Compile Include="Scraping\AdsScrapingService.cs" />
+    <Compile Include="Scraping\Sites\AdReferencesScraper.cs" />
+    <Compile Include="Scraping\Services\AdsScrapingService.cs" />
     <Compile Include="Scraping\DataTransfer\AdReference.cs" />
     <Compile Include="Scraping\DataTransfer\SearchResultPage.cs" />
-    <Compile Include="Scraping\IAdsScrapingService.cs" />
-    <Compile Include="Scraping\ImageTools.cs" />
-    <Compile Include="Scraping\LeBonCoin\LeBoinCoinAdProvider.cs" />
+    <Compile Include="Scraping\Services\IAdsScrapingService.cs" />
     <Compile Include="Scraping\LeBonCoin\LeBonCoinAdReferencesScraper.cs" />
-    <Compile Include="Scraping\LeBonCoin\LeBonCoinAdScraper.cs" />
     <Compile Include="Scraping\LeBonCoin\LeBonCoinConfiguration.cs" />
-    <Compile Include="Scraping\WebDriver.cs" />
+    <Compile Include="Scraping\Sites\WebDriver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

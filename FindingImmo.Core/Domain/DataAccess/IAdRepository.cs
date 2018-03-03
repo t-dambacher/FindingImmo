@@ -6,6 +6,7 @@ namespace FindingImmo.Core.Domain.DataAccess
     public interface IAdRepository
     {
         void SaveIfNotExist(IEnumerable<Ad> ads);
-        bool CheckIfExternalIdExists(string externalId);
+
+        bool DoesExternalIdExists(Website website, string externalId);
     }
 }

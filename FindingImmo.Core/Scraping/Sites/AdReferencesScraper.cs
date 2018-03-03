@@ -1,18 +1,21 @@
 ﻿using FindingImmo.Core.Domain.DataAccess;
+using FindingImmo.Core.Domain.Models;
 using FindingImmo.Core.Scraping.DataTransfer;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FindingImmo.Core.Scraping
+namespace FindingImmo.Core.Scraping.Sites
 {
     internal abstract class AdReferencesScraper
     {
+        public Website Website { get; }
         private readonly IAdRepository _repository;
 
-        protected AdReferencesScraper(IAdRepository repository)
+        protected AdReferencesScraper(IAdRepository repository, Website site)
         {
             this._repository = repository;
+            this.Website = site;
         }
 
         public IEnumerable<AdReference> Scrap(IWebDriver driver)
@@ -44,7 +47,7 @@ namespace FindingImmo.Core.Scraping
 
         private bool AlreadyExists(AdReference reference)
         {
-            return reference != null && this._repository.CheckIfExternalIdExists(reference.Reference);
+            return reference != null && this._repository.DoesExternalIdExists(this.Website, reference.Reference);
         }
 
         protected abstract void LaunchSearch(IWebDriver driver);

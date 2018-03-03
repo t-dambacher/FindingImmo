@@ -5,18 +5,20 @@ namespace FindingImmo.Core.Scraping.DataTransfer
     public sealed class AdReference
     {
         public string Reference { get; }
-        public string Url { get; }
+        public string DetailUrl { get; }
+        public string PictureUrl { get; set; }
+        public string Description { get; set; }
 
-        public AdReference(string reference, string url)
+        public AdReference(string reference, string detailUrl)
         {
             if (reference == null)
                 throw new ArgumentNullException(nameof(reference));
 
-            if (url == null)
-                throw new ArgumentNullException(nameof(url));
+            if (detailUrl == null)
+                throw new ArgumentNullException(nameof(detailUrl));
 
             this.Reference = reference;
-            this.Url = url;
+            this.DetailUrl = detailUrl;
         }
 
         public override string ToString()

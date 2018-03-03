@@ -1,20 +1,21 @@
 ﻿using FindingImmo.Core.Domain.DataAccess;
 using FindingImmo.Core.Domain.Models;
 using FindingImmo.Core.Infrastructure.Logging;
+using FindingImmo.Core.Scraping.Sites;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FindingImmo.Core.Scraping
+namespace FindingImmo.Core.Scraping.Services
 {
     internal sealed class AdsScrapingService : IAdsScrapingService
     {
-        private readonly IEnumerable<AdsProvider> _providers;
+        private readonly IEnumerable<AdReferencesScraper> _scrapers;
         private readonly ILogger _logger;
         private readonly IAdRepository _repository;
 
-        public AdsScrapingService(IEnumerable<AdsProvider> providers, IAdRepository repository, ILogger logger)
+        public AdsScrapingService(IEnumerable<AdReferencesScraper> scrapers, IAdRepository repository, ILogger logger)
         {
-            this._providers = providers;
+            this._scrapers = scrapers;
             this._logger = logger;
             this._repository = repository;
         }
@@ -28,7 +29,10 @@ namespace FindingImmo.Core.Scraping
 
         public IEnumerable<Ad> ScrapAll()
         {
-            return this._providers.SelectMany(p => p.Provide());
+            using (var driver = new WebDriver(this._logger))
+            {
+                return this._scrapers.SelectMany(p => p.Scrap(driver).Select(r => new Ad(r, p.Website)));
+            }
         }
     }
 }

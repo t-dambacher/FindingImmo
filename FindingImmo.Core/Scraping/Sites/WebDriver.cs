@@ -5,7 +5,7 @@ using OpenQA.Selenium.PhantomJS;
 using System;
 using System.Collections.ObjectModel;
 
-namespace FindingImmo.Core.Scraping
+namespace FindingImmo.Core.Scraping.Sites
 {
     sealed internal class WebDriver : IWebDriver
     {

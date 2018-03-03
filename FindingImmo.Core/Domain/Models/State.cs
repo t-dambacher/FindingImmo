@@ -1,9 +1,9 @@
 ﻿namespace FindingImmo.Core.Domain.Models
 {
-    public enum BooleanFeatureResult : int
+    public enum State
     {
         Unknown = 0,
-        False = 1,
-        True = 2
+        Scrapped = 1,
+        Sent = 2
     }
 }

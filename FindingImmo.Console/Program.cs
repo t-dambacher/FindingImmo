@@ -1,8 +1,11 @@
-﻿using FindingImmo.Core.Infrastructure.Logging;
+﻿using FindingImmo.Core.Domain.Models;
+using FindingImmo.Core.Infrastructure;
+using FindingImmo.Core.Infrastructure.Logging;
+using FindingImmo.Core.Scraping;
+using FindingImmo.Core.Scraping.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using static System.Console;
 
 namespace FindingImmo.Console
@@ -18,22 +21,7 @@ namespace FindingImmo.Console
 
             try
             {
-                Stopwatch watch = Stopwatch.StartNew();
                 IEnumerable<Ad> ads = scrapingService.UpdateAll();
-                watch.Stop();
-
-                WriteLine($"Elapsed time for scraping: {watch.Elapsed.TotalMinutes} minutes.");
-
-                INlpService nlpService = ServiceProvider.GetService<INlpService>();
-
-                watch.Restart();
-                foreach (Ad ad in ads)
-                {
-                    var titleParts = nlpService.Lemmatize(ad.Title);
-                    var descParts = nlpService.Lemmatize(ad.Description);
-                }
-                watch.Stop();
-                WriteLine($"Elapsed time for lemmatization: {watch.Elapsed.TotalMinutes} minutes.");
             }
             catch (Exception ex)
             {

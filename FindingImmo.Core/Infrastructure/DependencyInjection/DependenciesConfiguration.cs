@@ -1,7 +1,7 @@
 ﻿using FindingImmo.Core.Domain.DataAccess;
 using FindingImmo.Core.Infrastructure.Logging;
 using FindingImmo.Core.Scraping;
-using FindingImmo.Core.Scraping.LeBonCoin;
+using FindingImmo.Core.Scraping.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,15 +19,11 @@ namespace FindingImmo.Core.Infrastructure.DependencyInjection
         private static void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IAdsScrapingService, AdsScrapingService>();
-            services.AddTransient<AdsProvider, LeBoinCoinAdProvider>();
-            services.AddTransient<LeBonCoinAdReferencesScraper>();
-            services.AddTransient<LeBonCoinAdScraper>();
         }
 
         private static void ConfigureDataAccess(IServiceCollection services)
         {
             services.AddTransient<IAdRepository, AdRepository>();
-            services.AddTransient<IFeaturesRepository, FeaturesRepository>();
             services.AddDbContext<ImmoDbContext>(options => options.UseSqlite(Configuration.ConnectionString));
         }
 

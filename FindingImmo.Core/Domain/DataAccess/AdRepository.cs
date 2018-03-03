@@ -22,7 +22,7 @@ namespace FindingImmo.Core.Domain.DataAccess
             int i = 0;
             foreach (Ad newAd in ads)
             {
-                if (!CheckIfExternalIdExists(newAd.ExternalId))
+                if (!DoesExternalIdExists(newAd.Origin, newAd.ExternalId))
                 {
                     _dbContext.Set<Ad>().Add(newAd);
 
@@ -36,12 +36,12 @@ namespace FindingImmo.Core.Domain.DataAccess
             _dbContext.SaveChanges();
         }
 
-        public bool CheckIfExternalIdExists(string externalId)
+        public bool DoesExternalIdExists(Website website, string externalId)
         {
             if (string.IsNullOrWhiteSpace(externalId))
                 throw new ArgumentNullException(nameof(externalId));
 
-            return _dbContext.Set<Ad>().Any(a => a.ExternalId == externalId);
+            return _dbContext.Set<Ad>().Any(a => a.Origin == website && a.ExternalId == externalId);
         }
     }
 }
