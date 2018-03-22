@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.AIS
 {
     sealed internal class AISScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public AISScrapper(IAdRepository repository) 
             : base(repository, Website.AIS)
         {

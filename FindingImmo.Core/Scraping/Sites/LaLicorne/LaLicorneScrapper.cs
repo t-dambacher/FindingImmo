@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.LaLicorne
 {
     sealed internal class LaLicorneScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public LaLicorneScrapper(IAdRepository repository) 
             : base(repository, Website.LaLicorne)
         {

@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Salomon
 {
     sealed internal class SalomonScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public SalomonScrapper(IAdRepository repository) 
             : base(repository, Website.Salomon)
         {

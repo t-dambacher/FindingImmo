@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.MapsImmo
 {
     sealed internal class MapsImmoScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public MapsImmoScrapper(IAdRepository repository) 
             : base(repository, Website.MapsImmo)
         {

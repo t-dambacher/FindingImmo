@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Arp
 {
     sealed internal class ArpScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public ArpScrapper(IAdRepository repository) 
             : base(repository, Website.Arp)
         {

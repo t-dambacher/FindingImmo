@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.PrestigeImmo
 {
     sealed internal class PrestigeImmoScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public PrestigeImmoScrapper(IAdRepository repository) 
             : base(repository, Website.PrestigeImmo)
         {

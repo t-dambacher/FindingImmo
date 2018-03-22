@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Baumann
 {
     sealed internal class BaumannScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public BaumannScrapper(IAdRepository repository) 
             : base(repository, Website.Baumann)
         {

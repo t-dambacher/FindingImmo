@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.AlphaPatrimoine
 {
     sealed internal class AlphaPatrimoineScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public AlphaPatrimoineScrapper(IAdRepository repository) 
             : base(repository, Website.AlphaPatrimoine)
         {

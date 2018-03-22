@@ -1,6 +1,6 @@
 ﻿using FindingImmo.Core.Domain.DataAccess;
 using FindingImmo.Core.Infrastructure.Logging;
-using FindingImmo.Core.Scraping.Services;
+using FindingImmo.Core.Infrastructure.Mailing;
 using FindingImmo.Core.Scraping.Sites;
 using FindingImmo.Core.Scraping.Sites.Absis;
 using FindingImmo.Core.Scraping.Sites.AdsImmo;
@@ -54,6 +54,7 @@ using FindingImmo.Core.Scraping.Sites.StephanePlaza;
 using FindingImmo.Core.Scraping.Sites.Trois3Gimmobilier;
 using FindingImmo.Core.Scraping.Sites.TroisPourcentsPointCom;
 using FindingImmo.Core.Scraping.Sites.Upperside;
+using FindingImmo.Core.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -69,7 +70,8 @@ namespace FindingImmo.Core.Infrastructure.DependencyInjection
 
         private static void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IAdsScrapingService, AdsScrapingService>();
+            services.AddTransient<AdsScrapingService>();
+            services.AddTransient<FindingImmoService>();
             ConfigureScrappers(services);
         }
 
@@ -82,6 +84,7 @@ namespace FindingImmo.Core.Infrastructure.DependencyInjection
         private static void ConfigureInfratructure(IServiceCollection services)
         {
             services.AddSingleton<ILogger>(Logger.Instance);
+            services.AddSingleton<Mailer>();
             ConfigureDataAccess(services);
         }
 

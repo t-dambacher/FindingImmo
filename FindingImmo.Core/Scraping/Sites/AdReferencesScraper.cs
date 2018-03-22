@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites
     internal abstract class AdReferencesScraper
     {
         public Website Website { get; }
+        public abstract string RootUrl { get; }
+
         private readonly IAdRepository _repository;
 
         protected AdReferencesScraper(IAdRepository repository, Website site)
@@ -50,7 +52,11 @@ namespace FindingImmo.Core.Scraping.Sites
             return reference != null && this._repository.DoesExternalIdExists(this.Website, reference.Reference);
         }
 
-        protected abstract void LaunchSearch(IWebDriver driver);
+        protected virtual void LaunchSearch(IWebDriver driver)
+        {
+            driver.Navigate().GoToUrl(RootUrl);
+        }
+
         protected abstract IEnumerable<AdReference> GetSearchResultsFromCurrentPage(IWebDriver driver);
         protected abstract bool MoveToNextResultPage(IWebDriver driver);
     }

@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Heckmann
 {
     sealed internal class HeckmannScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public HeckmannScrapper(IAdRepository repository) 
             : base(repository, Website.Heckmann)
         {

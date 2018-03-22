@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Groupimmo
 {
     sealed internal class GroupimmoScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public GroupimmoScrapper(IAdRepository repository) 
             : base(repository, Website.Groupimmo)
         {

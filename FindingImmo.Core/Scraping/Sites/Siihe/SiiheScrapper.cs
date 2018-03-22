@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Siihe
 {
     sealed internal class SiiheScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public SiiheScrapper(IAdRepository repository) 
             : base(repository, Website.Siihe)
         {

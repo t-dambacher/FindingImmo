@@ -287,3 +287,5 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 /StanfordNLP
+/FindingImmo.Console/Smtp.config
+/FindingImmo.Console/AppSettings.config

@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Upperside
 {
     sealed internal class UppersideScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public UppersideScrapper(IAdRepository repository) 
             : base(repository, Website.Upperside)
         {

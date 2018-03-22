@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Solvimmo
 {
     sealed internal class SolvimmoScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public SolvimmoScrapper(IAdRepository repository) 
             : base(repository, Website.Solvimmo)
         {

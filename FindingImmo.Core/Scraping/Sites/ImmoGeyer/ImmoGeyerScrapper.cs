@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.ImmoGeyer
 {
     sealed internal class ImmoGeyerScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public ImmoGeyerScrapper(IAdRepository repository) 
             : base(repository, Website.ImmoGeyer)
         {

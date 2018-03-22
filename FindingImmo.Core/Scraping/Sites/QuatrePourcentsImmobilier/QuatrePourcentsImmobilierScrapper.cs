@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.QuatrePourcentsImmobilier
 {
     sealed internal class QuatrePourcentsImmobilierScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public QuatrePourcentsImmobilierScrapper(IAdRepository repository) 
             : base(repository, Website.QuatrePourcentsImmobilier)
         {

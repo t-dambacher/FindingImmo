@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Mehl
 {
     sealed internal class MehlScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public MehlScrapper(IAdRepository repository) 
             : base(repository, Website.Mehl)
         {

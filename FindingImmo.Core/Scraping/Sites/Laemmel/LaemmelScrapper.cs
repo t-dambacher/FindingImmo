@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Laemmel
 {
     sealed internal class LaemmelScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public LaemmelScrapper(IAdRepository repository) 
             : base(repository, Website.Laemmel)
         {

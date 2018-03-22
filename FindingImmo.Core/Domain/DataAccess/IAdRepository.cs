@@ -8,5 +8,7 @@ namespace FindingImmo.Core.Domain.DataAccess
         void SaveIfNotExist(IEnumerable<Ad> ads);
 
         bool DoesExternalIdExists(Website website, string externalId);
+
+        void MarkAsSent(Ad ad);
     }
 }

@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -118,6 +120,7 @@
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
@@ -182,6 +185,7 @@
     <Compile Include="Infrastructure\Logging\ConsoleLogger.cs" />
     <Compile Include="Infrastructure\Logging\ILogger.cs" />
     <Compile Include="Infrastructure\Logging\Logger.cs" />
+    <Compile Include="Infrastructure\Mailing\Mailer.cs" />
     <Compile Include="Infrastructure\Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scraping\Sites\Absis\AbsisScrapper.cs" />
@@ -235,15 +239,15 @@
     <Compile Include="Scraping\Sites\StephanePlaza\StephanePlazaScrapper.cs" />
     <Compile Include="Scraping\Sites\TroisGimmobilier\TroisGimmobilierScrapper.cs" />
     <Compile Include="Scraping\Sites\AdReferencesScraper.cs" />
-    <Compile Include="Scraping\Services\AdsScrapingService.cs" />
+    <Compile Include="Services\AdsScrapingService.cs" />
     <Compile Include="Scraping\DataTransfer\AdReference.cs" />
     <Compile Include="Scraping\DataTransfer\SearchResultPage.cs" />
-    <Compile Include="Scraping\Services\IAdsScrapingService.cs" />
     <Compile Include="Scraping\LeBonCoin\LeBonCoinAdReferencesScraper.cs" />
     <Compile Include="Scraping\LeBonCoin\LeBonCoinConfiguration.cs" />
     <Compile Include="Scraping\Sites\TroisPourcentsPointCom\TroisPourcentsPointComScrapper.cs" />
     <Compile Include="Scraping\Sites\Upperside\UppersideScrapper.cs" />
     <Compile Include="Scraping\Sites\WebDriver.cs" />
+    <Compile Include="Services\FindingImmoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -252,6 +256,13 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Selenium.Chrome.WebDriver.2.37\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.2.37\build\Selenium.Chrome.WebDriver.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Selenium.Chrome.WebDriver.2.37\build\Selenium.Chrome.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Chrome.WebDriver.2.37\build\Selenium.Chrome.WebDriver.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

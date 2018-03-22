@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.CapEstImmo
 {
     sealed internal class CapEstImmoScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public CapEstImmoScrapper(IAdRepository repository) 
             : base(repository, Website.CapEstImmo)
         {

@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Shorp
 {
     sealed internal class ShorpScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public ShorpScrapper(IAdRepository repository) 
             : base(repository, Website.Shorp)
         {

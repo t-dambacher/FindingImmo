@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Domial
 {
     sealed internal class DomialScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public DomialScrapper(IAdRepository repository) 
             : base(repository, Website.Domial)
         {

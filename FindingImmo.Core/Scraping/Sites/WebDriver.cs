@@ -1,5 +1,6 @@
 ﻿using FindingImmo.Core.Infrastructure.Logging;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.PhantomJS;
 using System;
@@ -98,7 +99,7 @@ namespace FindingImmo.Core.Scraping.Sites
 
         private IWebDriver BuildNewDriver()
         {
-            bool usePhantomJS = true;
+            bool usePhantomJS = false;
             if (usePhantomJS)
             {
                 PhantomJSDriver driver = new PhantomJSDriver(
@@ -114,13 +115,18 @@ namespace FindingImmo.Core.Scraping.Sites
                 return driver;
             }
 
-            return new FirefoxDriver(
-               new FirefoxOptions()
-               {
-                   LogLevel = FirefoxDriverLogLevel.Error,
-                   PageLoadStrategy = PageLoadStrategy.Eager
-               }
-           );
+            return new ChromeDriver(
+               
+            );
+            //var ffDriver = new FirefoxDriver(
+            //   new FirefoxOptions()
+            //   {
+            //       BrowserExecutableLocation = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe",
+            //       LogLevel = FirefoxDriverLogLevel.Error,
+            //       PageLoadStrategy = PageLoadStrategy.Normal
+            //   }
+            //);
+            //return ffDriver;
         }
 
         #region Nested classes

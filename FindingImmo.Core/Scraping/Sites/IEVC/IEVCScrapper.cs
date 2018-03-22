@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.IEVC
 {
     sealed internal class IEVCScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public IEVCScrapper(IAdRepository repository) 
             : base(repository, Website.IEVC)
         {

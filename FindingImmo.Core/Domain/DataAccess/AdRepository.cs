@@ -1,4 +1,5 @@
 ﻿using FindingImmo.Core.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,16 @@ namespace FindingImmo.Core.Domain.DataAccess
                 throw new ArgumentNullException(nameof(externalId));
 
             return _dbContext.Set<Ad>().Any(a => a.Origin == website && a.ExternalId == externalId);
+        }
+
+        public void MarkAsSent(Ad ad)
+        {
+            if (ad == null)
+                throw new ArgumentNullException(nameof(ad));
+
+            ad.State = State.Sent;
+            _dbContext.Entry(ad).State = EntityState.Modified;
+            _dbContext.SaveChanges();
         }
     }
 }

@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Absis
 {
     sealed internal class AbsisScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public AbsisScrapper(IAdRepository repository) 
             : base(repository, Website.Absis)
         {

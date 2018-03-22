@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace FindingImmo.Core.Infrastructure
@@ -10,7 +13,7 @@ namespace FindingImmo.Core.Infrastructure
 
         private static IConfigurationRoot Configure()
         {
-            return new ConfigurationBuilder()
+            return new Microsoft.Extensions.Configuration.ConfigurationBuilder()
                 .AddXmlFile(GetConfigurationFileName(), optional: true)
                 .Build();
         }
@@ -29,6 +32,14 @@ namespace FindingImmo.Core.Infrastructure
             get
             {
                 return @"Data Source=..\..\..\Database.db";
+            }
+        }
+
+        public static IEnumerable<string> MailRecipients
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["mailRecipients"]?.Split(',')?.ToList() ?? Enumerable.Empty<string>();
             }
         }
 

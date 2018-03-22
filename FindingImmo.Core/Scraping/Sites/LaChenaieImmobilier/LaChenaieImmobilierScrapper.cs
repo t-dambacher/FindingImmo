@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.LaChenaieImmobilier
 {
     sealed internal class LaChenaieImmobilierScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public LaChenaieImmobilierScrapper(IAdRepository repository) 
             : base(repository, Website.LaChenaieImmobilier)
         {

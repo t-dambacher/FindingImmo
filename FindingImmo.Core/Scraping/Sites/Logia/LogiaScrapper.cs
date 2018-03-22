@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Logia
 {
     sealed internal class LogiaScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public LogiaScrapper(IAdRepository repository) 
             : base(repository, Website.Logia)
         {

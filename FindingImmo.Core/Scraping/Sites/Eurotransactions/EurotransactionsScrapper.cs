@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Eurotransactions
 {
     sealed internal class EurotransactionsScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public EurotransactionsScrapper(IAdRepository repository) 
             : base(repository, Website.Eurotransactions)
         {

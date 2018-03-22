@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Century21
 {
     sealed internal class Century21Scrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public Century21Scrapper(IAdRepository repository) 
             : base(repository, Website.Century21)
         {

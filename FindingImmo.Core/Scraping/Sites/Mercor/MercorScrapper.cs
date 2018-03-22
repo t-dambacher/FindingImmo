@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Mercor
 {
     sealed internal class MercorScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public MercorScrapper(IAdRepository repository) 
             : base(repository, Website.Mercor)
         {

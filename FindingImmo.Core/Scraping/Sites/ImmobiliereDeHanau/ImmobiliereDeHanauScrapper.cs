@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.ImmobiliereDesRohan
 {
     sealed internal class ImmobiliereDesRohanScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public ImmobiliereDesRohanScrapper(IAdRepository repository) 
             : base(repository, Website.ImmobiliereDesRohan)
         {

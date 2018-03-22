@@ -2,12 +2,13 @@
 using FindingImmo.Core.Domain.Models;
 using FindingImmo.Core.Infrastructure.Logging;
 using FindingImmo.Core.Scraping.Sites;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FindingImmo.Core.Scraping.Services
+namespace FindingImmo.Core.Services
 {
-    internal sealed class AdsScrapingService : IAdsScrapingService
+    internal sealed class AdsScrapingService
     {
         private readonly IEnumerable<AdReferencesScraper> _scrapers;
         private readonly ILogger _logger;
@@ -24,14 +25,25 @@ namespace FindingImmo.Core.Scraping.Services
         {
             IEnumerable<Ad> all = ScrapAll();
             this._repository.SaveIfNotExist(all);
-            return all;
+            return all.Where(a => a.State != State.Sent).ToList();
         }
 
         public IEnumerable<Ad> ScrapAll()
         {
             using (var driver = new WebDriver(this._logger))
             {
-                return this._scrapers.SelectMany(p => p.Scrap(driver).Select(r => new Ad(r, p.Website)));
+                return this._scrapers.SelectMany(p => 
+                {
+                    try
+                    {
+                        return p.Scrap(driver).Select(r => new Ad(r, p.Website)).ToList();
+                    }
+                    catch (NotImplementedException)
+                    { }
+
+                    return Enumerable.Empty<Ad>();
+                })
+                .ToList();
             }
         }
     }

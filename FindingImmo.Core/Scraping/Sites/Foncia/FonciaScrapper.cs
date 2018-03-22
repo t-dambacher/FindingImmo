@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Foncia
 {
     sealed internal class FonciaScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public FonciaScrapper(IAdRepository repository) 
             : base(repository, Website.Foncia)
         {

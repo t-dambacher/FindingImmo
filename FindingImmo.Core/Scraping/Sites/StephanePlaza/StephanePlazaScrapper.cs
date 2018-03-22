@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.StephanePlaza
 {
     sealed internal class StephanePlazaScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public StephanePlazaScrapper(IAdRepository repository) 
             : base(repository, Website.StephanePlaza)
         {

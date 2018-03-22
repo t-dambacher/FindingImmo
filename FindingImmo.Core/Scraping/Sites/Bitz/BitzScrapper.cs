@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Bitz
 {
     sealed internal class BitzScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public BitzScrapper(IAdRepository repository) 
             : base(repository, Website.Bitz)
         {

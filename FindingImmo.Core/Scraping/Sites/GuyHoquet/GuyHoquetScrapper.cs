@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.GuyHoquet
 {
     sealed internal class GuyHoquetScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public GuyHoquetScrapper(IAdRepository repository) 
             : base(repository, Website.GuyHoquet)
         {

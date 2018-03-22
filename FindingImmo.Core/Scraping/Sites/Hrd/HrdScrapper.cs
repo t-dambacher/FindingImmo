@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Hrd
 {
     sealed internal class HrdScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public HrdScrapper(IAdRepository repository) 
             : base(repository, Website.Hrd)
         {

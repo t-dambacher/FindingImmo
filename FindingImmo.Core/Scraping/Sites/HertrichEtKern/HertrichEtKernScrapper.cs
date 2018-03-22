@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.HertrichEtKern
 {
     sealed internal class HertrichEtKernScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public HertrichEtKernScrapper(IAdRepository repository) 
             : base(repository, Website.HertrichEtKern)
         {

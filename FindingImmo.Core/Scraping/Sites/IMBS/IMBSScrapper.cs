@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.IMBS
 {
     sealed internal class IMBSScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public IMBSScrapper(IAdRepository repository) 
             : base(repository, Website.IMBS)
         {

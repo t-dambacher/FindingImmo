@@ -10,6 +10,8 @@ namespace FindingImmo.Core.Scraping.Sites.Boistelle
 {
     sealed internal class BoistelleScrapper : AdReferencesScraper
     {
+        public override string RootUrl => throw new NotImplementedException();
+
         public BoistelleScrapper(IAdRepository repository) 
             : base(repository, Website.Boistelle)
         {
