@@ -1,16 +1,16 @@
 ﻿using FindingImmo.Core.Infrastructure.Logging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.PhantomJS;
 using System;
 using System.Collections.ObjectModel;
+using System.Net.Sockets;
 
 namespace FindingImmo.Core.Scraping.Sites
 {
     sealed internal class WebDriver : IWebDriver
     {
-        private const int NumberOfRequetPerNavigatorInstance = 50;
+        private const int NumberOfRequetPerNavigatorInstance = 20;
         private int _navigationCalls;
         private readonly ILogger _logger;
 
@@ -99,34 +99,19 @@ namespace FindingImmo.Core.Scraping.Sites
 
         private IWebDriver BuildNewDriver()
         {
-            bool usePhantomJS = false;
-            if (usePhantomJS)
-            {
-                PhantomJSDriver driver = new PhantomJSDriver(
-                    new PhantomJSOptions()
-                    {
-                        PageLoadStrategy = PageLoadStrategy.Eager,
-                        UnhandledPromptBehavior = UnhandledPromptBehavior.Dismiss,
-                    }
-                );
-
-                driver.Manage().Window.Maximize();
-
-                return driver;
-            }
-
-            return new ChromeDriver(
-               
+            IWebDriver res = new ChromeDriver(
+                new ChromeOptions()
+                {
+                    PageLoadStrategy = PageLoadStrategy.Normal
+                }
             );
-            //var ffDriver = new FirefoxDriver(
-            //   new FirefoxOptions()
-            //   {
-            //       BrowserExecutableLocation = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe",
-            //       LogLevel = FirefoxDriverLogLevel.Error,
-            //       PageLoadStrategy = PageLoadStrategy.Normal
-            //   }
-            //);
-            //return ffDriver;
+
+            var timeout = TimeSpan.FromSeconds(60);
+            res.Manage().Timeouts().AsynchronousJavaScript = timeout;
+            res.Manage().Timeouts().ImplicitWait = timeout;
+            res.Manage().Timeouts().PageLoad = timeout;
+
+            return res;
         }
 
         #region Nested classes
@@ -151,29 +136,41 @@ namespace FindingImmo.Core.Scraping.Sites
 
             public void Back()
             {
-                _decorated.Back();
+                TryOrRetry(() => _decorated.Back());
             }
 
             public void Forward()
             {
-                _decorated.Forward();
+                TryOrRetry(() => _decorated.Forward());
             }
 
             public void GoToUrl(string url)
             {
-                _decorated.GoToUrl(url);
+                TryOrRetry(() => _decorated.GoToUrl(url));
                 AfterNavigation();
             }
 
             public void GoToUrl(Uri url)
             {
-                _decorated.GoToUrl(url);
+                TryOrRetry(() => _decorated.GoToUrl(url));
                 AfterNavigation();
             }
 
             public void Refresh()
             {
-                _decorated.Refresh();
+                TryOrRetry(() => _decorated.Refresh());
+            }
+
+            private void TryOrRetry(Action action)
+            {
+                try
+                {
+                    action();
+                }
+                catch (Exception ex) when (ex.GetBaseException() is SocketException)
+                {
+                    action();
+                }
             }
 
             #endregion

@@ -30,20 +30,22 @@ namespace FindingImmo.Core.Services
 
         public IEnumerable<Ad> ScrapAll()
         {
+            // todo: can be optimised with a Parallel.ForEach, when everything else will be done
+            return this._scrapers.SelectMany(Scrap).ToList();
+        }
+
+        private IEnumerable<Ad> Scrap(AdReferencesScraper scraper)
+        {
             using (var driver = new WebDriver(this._logger))
             {
-                return this._scrapers.SelectMany(p => 
+                try
                 {
-                    try
-                    {
-                        return p.Scrap(driver).Select(r => new Ad(r, p.Website)).ToList();
-                    }
-                    catch (NotImplementedException)
-                    { }
+                    return scraper.Scrap(driver).Select(r => new Ad(r, scraper.Website)).ToList();
+                }
+                catch (NotImplementedException)
+                { }
 
-                    return Enumerable.Empty<Ad>();
-                })
-                .ToList();
+                return Enumerable.Empty<Ad>();
             }
         }
     }
