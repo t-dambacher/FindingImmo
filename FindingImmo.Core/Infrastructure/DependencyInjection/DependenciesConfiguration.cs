@@ -125,14 +125,14 @@ namespace FindingImmo.Core.Infrastructure.DependencyInjection
             //services.AddTransient<AdReferencesScraper, ImmoGeyerScrapper>();
             //services.AddTransient<AdReferencesScraper, ImmosurmesureScrapper>();
             //services.AddTransient<AdReferencesScraper, ImmoTeamScrapper>();
-            //services.AddTransient<AdReferencesScraper, LaChenaieImmobilierScrapper>();
+            services.AddTransient<AdReferencesScraper, LaChenaieImmobilierScrapper>();
             //services.AddTransient<AdReferencesScraper, LaemmelScrapper>();
             //services.AddTransient<AdReferencesScraper, LaLicorneScrapper>();
             //services.AddTransient<AdReferencesScraper, LogiaScrapper>();
             //services.AddTransient<AdReferencesScraper, MapsImmoScrapper>();
             //services.AddTransient<AdReferencesScraper, MehlScrapper>();
             //services.AddTransient<AdReferencesScraper, MercorScrapper>();
-            services.AddTransient<AdReferencesScraper, OrpiBrumathScrapper>();
+            //services.AddTransient<AdReferencesScraper, OrpiBrumathScrapper>();
             //services.AddTransient<AdReferencesScraper, PrestigeImmoScrapper>();
             //services.AddTransient<AdReferencesScraper, RueDeLImmobilierScrapper>();
             //services.AddTransient<AdReferencesScraper, SalomonScrapper>();
