@@ -2,3 +2,13 @@ language: csharp
 solution: FindingImmo.sln
 mono: none
 dotnet: 2.1.1
+
+install:
+ - dotnet restore
+ - dotnet tool install --global dotnet-sonarscanner
+
+
+script:
+- dotnet sonarscanner begin /k:"673fb25dd6a4303ad2fa8e9852556802860b1cde"
+- dotnet build
+- dotnet sonarscanner end
