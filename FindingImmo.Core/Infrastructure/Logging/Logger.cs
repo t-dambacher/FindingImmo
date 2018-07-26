@@ -4,9 +4,7 @@ namespace FindingImmo.Core.Infrastructure.Logging
 {
     public static class Logger
     {
-        private static readonly ILogger _instance = new ConsoleLogger();
-
-        internal static ILogger Instance => _instance;
+        internal static ILogger Instance { get; } = new ConsoleLogger();
 
         public static void Info(string message)
         {

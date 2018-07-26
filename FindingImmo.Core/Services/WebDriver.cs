@@ -127,7 +127,7 @@ namespace FindingImmo.Core.Scraping.Sites
                 this._driver = driver;
             }
 
-            private void AfterNavigation()
+            private void OnAfterNavigating()
             {
                 this._driver.NavigationCalled();
             }
@@ -147,13 +147,13 @@ namespace FindingImmo.Core.Scraping.Sites
             public void GoToUrl(string url)
             {
                 TryOrRetry(() => _decorated.GoToUrl(url));
-                AfterNavigation();
+                OnAfterNavigating();
             }
 
             public void GoToUrl(Uri url)
             {
                 TryOrRetry(() => _decorated.GoToUrl(url));
-                AfterNavigation();
+                OnAfterNavigating();
             }
 
             public void Refresh()

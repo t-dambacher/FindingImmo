@@ -25,7 +25,7 @@ namespace FindingImmo.Core.Services
         {
             IEnumerable<Ad> all = ScrapAll();
             this._repository.SaveIfNotExist(all);
-            return all.Where(a => a.State != State.Sent).ToList();
+            return all.Where(ad => ad.State != State.Sent).ToList();
         }
 
         public IEnumerable<Ad> ScrapAll()
@@ -40,7 +40,7 @@ namespace FindingImmo.Core.Services
             {
                 try
                 {
-                    return scraper.Scrap(driver).Select(r => new Ad(r, scraper.Website)).ToList();
+                    return scraper.Scrap(driver).Select(reference => new Ad(reference, scraper.Website)).ToList();
                 }
                 catch (NotImplementedException)
                 { }

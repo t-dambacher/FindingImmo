@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace FindingImmo.Core.Domain.DataAccess
 {
-    sealed internal class AdRepository : IAdRepository
+    internal sealed class AdRepository : IAdRepository
     {
         private readonly ImmoDbContext _dbContext;
 
@@ -20,18 +20,18 @@ namespace FindingImmo.Core.Domain.DataAccess
             if (ads == null)
                 throw new ArgumentNullException(nameof(ads));
 
-            int i = 0;
+            int index = 0;
             foreach (Ad newAd in ads)
             {
                 if (!DoesExternalIdExists(newAd.Origin, newAd.ExternalId))
                 {
                     _dbContext.Set<Ad>().Add(newAd);
 
-                    if (i % 100 == 0)
+                    if (index % 100 == 0)
                         _dbContext.SaveChanges();
                 }
 
-                ++i;
+                ++index;
             }
 
             _dbContext.SaveChanges();
@@ -42,7 +42,7 @@ namespace FindingImmo.Core.Domain.DataAccess
             if (string.IsNullOrWhiteSpace(externalId))
                 throw new ArgumentNullException(nameof(externalId));
 
-            return _dbContext.Set<Ad>().Any(a => a.Origin == website && a.ExternalId == externalId);
+            return _dbContext.Set<Ad>().Any(ad => ad.Origin == website && ad.ExternalId == externalId);
         }
 
         public void MarkAsSent(Ad ad)

@@ -14,11 +14,11 @@ namespace FindingImmo.Core.Infrastructure
         private static IConfigurationRoot Configure()
         {
             return new Microsoft.Extensions.Configuration.ConfigurationBuilder()
-                .AddXmlFile(GetConfigurationFileName(), optional: true)
+                .AddXmlFile(GetFileName(), optional: true)
                 .Build();
         }
 
-        private static string GetConfigurationFileName()
+        private static string GetFileName()
         {
             Assembly assembly = Assembly.GetEntryAssembly();
             if (assembly == null)
@@ -27,13 +27,7 @@ namespace FindingImmo.Core.Infrastructure
             return Path.GetFileName(assembly.Location) + ".config";
         }
 
-        public static string ConnectionString
-        {
-            get
-            {
-                return @"Data Source=..\..\..\Database.db";
-            }
-        }
+        public static string ConnectionString => @"Data Source=..\..\..\Database.db";
 
         public static IEnumerable<string> MailRecipients
         {

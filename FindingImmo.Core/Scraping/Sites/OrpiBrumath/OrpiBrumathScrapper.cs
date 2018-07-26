@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace FindingImmo.Core.Scraping.Sites.OrpiBrumath
 {
-    sealed internal class OrpiBrumathScrapper : AdReferencesScraper
+    internal sealed class OrpiBrumathScrapper : AdReferencesScraper
     {
         private const string HomeUrl = "https://www.orpi.com";
 
@@ -21,7 +21,7 @@ namespace FindingImmo.Core.Scraping.Sites.OrpiBrumath
 
         private void RemoveEuNotif(IWebDriver driver)
         {
-            var euNotif = driver.FindElements(By.ClassName("cc-compliance"));
+            IEnumerable<IWebElement> euNotif = driver.FindElements(By.ClassName("cc-compliance"));
             if (euNotif.Any() && euNotif.First().Displayed)
                 euNotif.First().FindElement(By.TagName("a")).Click();
         }
@@ -34,7 +34,7 @@ namespace FindingImmo.Core.Scraping.Sites.OrpiBrumath
             try
             {
                 IList<AdReference> references = new List<AdReference>();
-                foreach (var li in driver.FindElement(By.ClassName("resultLayout-estateList")).FindElements(By.TagName("li")))
+                foreach (IWebElement li in driver.FindElement(By.ClassName("resultLayout-estateList")).FindElements(By.TagName("li")))
                 {
                     references.Add(
                         new AdReference(li.GetAttribute("id"), li.FindElement(By.TagName("a")).GetAttribute("href"))
@@ -63,7 +63,7 @@ namespace FindingImmo.Core.Scraping.Sites.OrpiBrumath
 
         private int GetTailleTerrain(IWebDriver driver)
         {
-            var res = driver.FindElement(By.Id("detail"))
+            IWebElement res = driver.FindElement(By.Id("detail"))
                .FindElements(By.TagName("li"))
                .FirstOrDefault(li => li.FindElements(By.TagName("mark")).Any(m => m.Text == "Surface du terrain"));
             string sizeAsString = res?.FindElements(By.TagName("mark")).FirstOrDefault(m => m.Text != "Surface du terrain")?.Text;
@@ -71,7 +71,7 @@ namespace FindingImmo.Core.Scraping.Sites.OrpiBrumath
             {
                 if (sizeAsString == null)
                     return 0;
-                return int.Parse(new string(sizeAsString.Where(c => Char.IsNumber(c) && c != '²').ToArray()));
+                return int.Parse(new string(sizeAsString.Where(c => char.IsNumber(c) && c != '²').ToArray()));
             }
             catch { return 0; }
         }
@@ -80,12 +80,12 @@ namespace FindingImmo.Core.Scraping.Sites.OrpiBrumath
         {
             RemoveEuNotif(driver);
 
-            var navBar = driver.FindElements(By.TagName("nav")).FirstOrDefault(n => n.GetAttribute("class")?.Contains("paging") ?? false);
+            IWebElement navBar = driver.FindElements(By.TagName("nav")).FirstOrDefault(nav => nav.GetAttribute("class")?.Contains("paging") ?? false);
             if (navBar == null)
                 return false;
 
-            var items = navBar.FindElements(By.ClassName("paging-item "))
-                .OrderBy(i => (int.TryParse(i.Text, out int p) ? 1 : -1) * p)
+            IEnumerable<IWebElement> items = navBar.FindElements(By.ClassName("paging-item "))
+                .OrderBy(item => (int.TryParse(item.Text, out int p) ? 1 : -1) * p)
                 .ToList();
 
             if (items.LastOrDefault()?.GetAttribute("class")?.Contains("current") ?? false)
