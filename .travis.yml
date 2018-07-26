@@ -1,7 +1,7 @@
 language: csharp
 solution: FindingImmo.sln
 mono: none
-dotnet: 2.1.300
+dotnet: 2.1.302
 
 install:
  - dotnet restore
@@ -9,6 +9,6 @@ install:
 
 
 script:
-- dotnet sonarscanner begin /k:"673fb25dd6a4303ad2fa8e9852556802860b1cde"
+- $HOME/.dotnet/tools/dotnet-sonarscanner begin /k:"FindingImmo" /d:sonar.organization="t-dambacher" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="" /version:"$TRAVIS_BUILD_NUMBER-$TRAVIS_COMMIT"
 - dotnet build
-- dotnet sonarscanner end
+- $HOME/.dotnet/tools/dotnet-sonarscanner end /d:sonar.login="$SONAR_TOKEN"
