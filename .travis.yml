@@ -9,6 +9,7 @@ install:
 
 
 script:
-- $HOME/.dotnet/tools/dotnet-sonarscanner begin /k:"FindingImmo" /d:sonar.organization="t-dambacher" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="" /version:"$TRAVIS_BUILD_NUMBER-$TRAVIS_COMMIT"
+- export PATH="$PATH:/home/travis/.dotnet/tools"
+- dotnet sonarscanner begin /k:"FindingImmo" /d:sonar.organization="t-dambacher-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login=$SONAR_TOKEN
 - dotnet build
-- $HOME/.dotnet/tools/dotnet-sonarscanner end /d:sonar.login="$SONAR_TOKEN"
+- dotnet sonarscanner end /d:sonar.login=$SONAR_TOKEN
