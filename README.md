@@ -2,6 +2,9 @@
 
 This is my very own solution for finding my future house, by scraping real estate agencies' websites, prefiltering their ads and then submitting them to me through a website.
 
+## Current state
+<img src="https://api.travis-ci.com/t-dambacher/FindingImmo.svg?branch=master&sanitize=true" />
+
 ## Stack
 
 The app uses the following tools :
