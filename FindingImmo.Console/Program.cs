@@ -4,7 +4,7 @@ using static System.Console;
 
 namespace FindingImmo.Console
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {

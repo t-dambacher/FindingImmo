@@ -22,7 +22,7 @@ namespace FindingImmo.Core.Infrastructure.Mailing
             foreach (string recipient in Configuration.MailRecipients)
                 msg.To.Add(recipient);
 
-            using (SmtpClient client = new SmtpClient())
+            using (SmtpClient client = BuildSmtpClient())
             {
                 client.Send(msg);
             }
