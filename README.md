@@ -32,6 +32,5 @@ The project is structured as a standard 3-tiers app.
 To check for code sanity and enforce some behaviour and style, the project uses :
 * The .NET-integrated analyzer (for "Managed Binary Analysis")
 * The [C# Coding Guidelines](https://www.csharpcodingguidelines.com), customized to suppress some "extrem" rules
-* The [EditorConfig](https://editorconfig.org) tool, in order to add more checks, in addition to the previous analyzers, to add some formating at the writing time
- 
+* [SonarQube](https://sonarcloud.io/), with the default configuration 
 Those tools were mainly used here to being tryed tested, inside a pseudo-real world context.
