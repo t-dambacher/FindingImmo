@@ -12,7 +12,7 @@ script:
 - export PATH="$PATH:/home/travis/.dotnet/tools"
 - $HOME/.dotnet/tools/dotnet-sonarscanner begin /k:"FindingImmo" /d:sonar.organization="t-dambacher-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login=$SONAR_TOKEN /version:"$TRAVIS_BUILD_NUMBER-$TRAVIS_COMMIT"
 - echo '<appSettings><add key="mailRecipients" value="$APP_MAIL_RECIPIENTS"/></appSettings>' > FindingImmo.Console/AppSettings.config
-- echo '<smtp deliveryMethod="Network" deliveryFormat="SevenBit" from="$APP_SMTP_USER"><network host="$APP_SMTP_SERVER" port="$APP_SMTP_PORT"  userName="$APP_SMTP_USER" password="$APP_SMTP_PWD" enableSsl="true" /></smtp>' > FindingImmo.Console/SmtpConfig.config
+- echo '<smtp deliveryMethod="Network" deliveryFormat="SevenBit" from="$APP_SMTP_USER"><network host="$APP_SMTP_SERVER" port="$APP_SMTP_PORT" userName="$APP_SMTP_USER" password="$APP_SMTP_PWD" enableSsl="true" /></smtp>' > FindingImmo.Console/Smtp.config
 - dotnet build
 - $HOME/.dotnet/tools/dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
 
