@@ -4,6 +4,9 @@ This is my very own solution for finding my future house, by scraping real estat
 
 ## Current state
 <img src="https://api.travis-ci.com/t-dambacher/FindingImmo.svg?branch=master&sanitize=true" />
+<img src="https://sonarcloud.io/api/project_badges/measure?project=FindingImmo&metric=bugs&sanitize=true" />
+<img src="https://sonarcloud.io/api/project_badges/measure?project=FindingImmo&metric=code_smells&sanitize=true" />
+<img src="https://sonarcloud.io/api/project_badges/measure?project=FindingImmo&metric=alert_status&sanitize=true" />
 
 ## Stack
 
