@@ -4,7 +4,7 @@ using System.Net.Mail;
 
 namespace FindingImmo.Core.Infrastructure.Mailing
 {
-    sealed internal class Mailer
+    internal sealed class Mailer
     {
         public void Send(string title, string message)
         {

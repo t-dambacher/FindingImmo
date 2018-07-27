@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace FindingImmo.Core.Scraping.Sites.HertrichEtKern
 {
-    sealed internal class HertrichEtKernScrapper : AdReferencesScraper
+    internal sealed class HertrichEtKernScrapper : AdReferencesScraper
     {
         public override string RootUrl => throw new NotImplementedException();
 

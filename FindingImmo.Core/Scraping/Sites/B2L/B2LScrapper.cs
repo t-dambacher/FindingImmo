@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace FindingImmo.Core.Scraping.Sites.B2L
 {
-    sealed internal class B2LScrapper : AdReferencesScraper
+    internal sealed class B2LScrapper : AdReferencesScraper
     {
         public override string RootUrl => throw new NotImplementedException();
 

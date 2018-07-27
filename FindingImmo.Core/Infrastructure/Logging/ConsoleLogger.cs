@@ -2,7 +2,7 @@
 
 namespace FindingImmo.Core.Infrastructure.Logging
 {
-    sealed internal class ConsoleLogger : ILogger
+    internal sealed class ConsoleLogger : ILogger
     {
         public void Fatal(Exception ex)
         {

@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace FindingImmo.Core.Scraping.Sites.Capifrance
 {
-    sealed internal class CapifranceScrapper : AdReferencesScraper
+    internal sealed class CapifranceScrapper : AdReferencesScraper
     {
         public override string RootUrl => throw new NotImplementedException();
 

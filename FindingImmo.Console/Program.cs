@@ -1,6 +1,5 @@
 ﻿using FindingImmo.Core.Infrastructure;
 using FindingImmo.Core.Infrastructure.Logging;
-using FindingImmo.Core.Infrastructure.Mailing;
 using FindingImmo.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -8,7 +7,7 @@ using static System.Console;
 
 namespace FindingImmo.Console
 {
-    public class Program
+    public static class Program
     {
         private static IServiceProvider ServiceProvider { get; } = Bootstrap();
 

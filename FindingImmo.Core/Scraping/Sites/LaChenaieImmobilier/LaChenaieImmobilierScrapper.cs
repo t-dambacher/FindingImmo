@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace FindingImmo.Core.Scraping.Sites.LaChenaieImmobilier
 {
-    sealed internal class LaChenaieImmobilierScrapper : AdReferencesScraper
+    internal sealed class LaChenaieImmobilierScrapper : AdReferencesScraper
     {
         private const string HomeUrl = "http://www.lachenaieimmobilier.fr";
         public override string RootUrl => HomeUrl + "/?search-class=DB_CustomSearch_Widget-db_customsearch_widget&widget_number=5&all-4=VENTE&cs-all-0=&cs--1=maison&cs-prix_vente-2=&cs-surface_habitable-3=&search=Rechercher";

@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace FindingImmo.Core.Scraping.Sites.Bitz
 {
-    sealed internal class BitzScrapper : AdReferencesScraper
+    internal sealed class BitzScrapper : AdReferencesScraper
     {
         public override string RootUrl => throw new NotImplementedException();
 

@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace FindingImmo.Core.Scraping.Sites.Heckmann
 {
-    sealed internal class HeckmannScrapper : AdReferencesScraper
+    internal sealed class HeckmannScrapper : AdReferencesScraper
     {
         public override string RootUrl => throw new NotImplementedException();
 

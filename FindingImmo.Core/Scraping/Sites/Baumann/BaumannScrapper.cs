@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace FindingImmo.Core.Scraping.Sites.Baumann
 {
-    sealed internal class BaumannScrapper : AdReferencesScraper
+    internal sealed class BaumannScrapper : AdReferencesScraper
     {
         public override string RootUrl => throw new NotImplementedException();
 

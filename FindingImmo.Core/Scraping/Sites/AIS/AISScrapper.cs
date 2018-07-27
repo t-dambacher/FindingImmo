@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using FindingImmo.Core.Domain.DataAccess;
+﻿using FindingImmo.Core.Domain.DataAccess;
 using FindingImmo.Core.Domain.Models;
 using FindingImmo.Core.Scraping.DataTransfer;
 using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 
 namespace FindingImmo.Core.Scraping.Sites.AIS
 {
-    sealed internal class AISScrapper : AdReferencesScraper
+    internal sealed class AisScrapper : AdReferencesScraper
     {
         public override string RootUrl => throw new NotImplementedException();
 
-        public AISScrapper(IAdRepository repository) 
+        public AisScrapper(IAdRepository repository) 
             : base(repository, Website.AIS)
         {
         }

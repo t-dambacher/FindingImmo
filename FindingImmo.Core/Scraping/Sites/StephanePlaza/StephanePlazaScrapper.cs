@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace FindingImmo.Core.Scraping.Sites.StephanePlaza
 {
-    sealed internal class StephanePlazaScrapper : AdReferencesScraper
+    internal sealed class StephanePlazaScrapper : AdReferencesScraper
     {
         public override string RootUrl => throw new NotImplementedException();
 

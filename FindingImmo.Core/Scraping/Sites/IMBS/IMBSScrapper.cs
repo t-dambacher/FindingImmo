@@ -8,11 +8,11 @@ using OpenQA.Selenium;
 
 namespace FindingImmo.Core.Scraping.Sites.IMBS
 {
-    sealed internal class IMBSScrapper : AdReferencesScraper
+    internal sealed class ImbsScrapper : AdReferencesScraper
     {
         public override string RootUrl => throw new NotImplementedException();
 
-        public IMBSScrapper(IAdRepository repository) 
+        public ImbsScrapper(IAdRepository repository) 
             : base(repository, Website.IMBS)
         {
         }

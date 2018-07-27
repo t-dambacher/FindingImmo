@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace FindingImmo.Core.Scraping.Sites.Logia
 {
-    sealed internal class LogiaScrapper : AdReferencesScraper
+    internal sealed class LogiaScrapper : AdReferencesScraper
     {
         public override string RootUrl => throw new NotImplementedException();
 

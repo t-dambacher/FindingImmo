@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FindingImmo.Core.Services
 {
-    sealed internal class FindingImmoService
+    internal sealed class FindingImmoService
     {
         private readonly Mailer _mailer;
         private readonly AdsScrapingService _service;

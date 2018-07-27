@@ -8,11 +8,11 @@ using OpenQA.Selenium;
 
 namespace FindingImmo.Core.Scraping.Sites.AIW
 {
-    sealed internal class AIWScrapper : AdReferencesScraper
+    internal sealed class AiwScrapper : AdReferencesScraper
     {
         public override string RootUrl => throw new NotImplementedException();
 
-        public AIWScrapper(IAdRepository repository) 
+        public AiwScrapper(IAdRepository repository) 
             : base(repository, Website.AIW)
         {
         }

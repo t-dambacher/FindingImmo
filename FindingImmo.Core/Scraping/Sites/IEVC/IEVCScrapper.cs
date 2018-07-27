@@ -8,11 +8,11 @@ using OpenQA.Selenium;
 
 namespace FindingImmo.Core.Scraping.Sites.IEVC
 {
-    sealed internal class IEVCScrapper : AdReferencesScraper
+    internal sealed class IevcScrapper : AdReferencesScraper
     {
         public override string RootUrl => throw new NotImplementedException();
 
-        public IEVCScrapper(IAdRepository repository) 
+        public IevcScrapper(IAdRepository repository) 
             : base(repository, Website.IEVC)
         {
         }

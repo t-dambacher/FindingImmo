@@ -289,3 +289,4 @@ __pycache__/
 /StanfordNLP
 /FindingImmo.Console/Smtp.config
 /FindingImmo.Console/AppSettings.config
+.sonarlint/

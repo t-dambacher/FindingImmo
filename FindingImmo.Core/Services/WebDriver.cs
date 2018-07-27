@@ -8,7 +8,7 @@ using System.Net.Sockets;
 
 namespace FindingImmo.Core.Scraping.Sites
 {
-    sealed internal class WebDriver : IWebDriver
+    internal sealed class WebDriver : IWebDriver
     {
         private const int NumberOfRequetPerNavigatorInstance = 20;
         private int _navigationCalls;
