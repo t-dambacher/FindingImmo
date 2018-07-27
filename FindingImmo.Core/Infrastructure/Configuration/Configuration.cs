@@ -1,40 +1,23 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace FindingImmo.Core.Infrastructure
 {
     public static class Configuration
     {
-        private static IConfigurationRoot Instance { get; } = Configure();
+        public static string ConnectionString { get; }
 
-        private static IConfigurationRoot Configure()
+        public static IEnumerable<string> MailRecipients { get; }
+
+        public static SmtpConfiguration Smtp { get; }
+
+
+        static Configuration()
         {
-            return new Microsoft.Extensions.Configuration.ConfigurationBuilder()
-                .AddXmlFile(GetFileName(), optional: true)
-                .Build();
-        }
-
-        private static string GetFileName()
-        {
-            Assembly assembly = Assembly.GetEntryAssembly();
-            if (assembly == null)
-                return "FindingImmo.Console.exe.config"; // todo: should be "Web.config" when running as a website
-
-            return Path.GetFileName(assembly.Location) + ".config";
-        }
-
-        public static string ConnectionString => @"Data Source=..\..\..\Database.db";
-
-        public static IEnumerable<string> MailRecipients
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings["mailRecipients"]?.Split(',')?.ToList() ?? Enumerable.Empty<string>();
-            }
+            ConnectionString = ConfigurationManager.ConnectionStrings["FindingImmo"]?.ConnectionString;
+            MailRecipients = ConfigurationManager.AppSettings["Smtp.Recipients"]?.Split(',')?.ToList() ?? Enumerable.Empty<string>();
+            Smtp = SmtpConfiguration.Instance;
         }
 
         public static void Bootstrap()

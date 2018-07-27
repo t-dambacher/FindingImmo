@@ -13,6 +13,7 @@ namespace FindingImmo.Core.Infrastructure.Mailing
 
             var msg = new MailMessage()
             {
+                From = new MailAddress(Configuration.Smtp.Sender),
                 Subject = title,
                 Body = message,
                 IsBodyHtml = true
@@ -25,6 +26,19 @@ namespace FindingImmo.Core.Infrastructure.Mailing
             {
                 client.Send(msg);
             }
+        }
+
+        private SmtpClient BuildSmtpClient()
+        {
+            return new SmtpClient()
+            {
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                DeliveryFormat = SmtpDeliveryFormat.SevenBit,
+                Host = Configuration.Smtp.Host,
+                Port = Configuration.Smtp.Port,
+                Credentials = new NetworkCredential(Configuration.Smtp.UserName, Configuration.Smtp.Password),
+                EnableSsl = true,
+            };
         }
     }
 }
