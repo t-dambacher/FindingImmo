@@ -3,10 +3,11 @@
 This is my very own solution for finding my future house, by scraping real estate agencies' websites, prefiltering their ads and then submitting them to me through a website.
 
 ## Current state
-<img src="https://api.travis-ci.com/t-dambacher/FindingImmo.svg?branch=master&sanitize=true" />
-<img src="https://sonarcloud.io/api/project_badges/measure?project=FindingImmo&metric=bugs&sanitize=true" />
-<img src="https://sonarcloud.io/api/project_badges/measure?project=FindingImmo&metric=code_smells&sanitize=true" />
-<img src="https://sonarcloud.io/api/project_badges/measure?project=FindingImmo&metric=alert_status&sanitize=true" />
+
+[![Build](https://api.travis-ci.com/t-dambacher/FindingImmo.svg?branch=master&sanitize=true)](https://travis-ci.com/t-dambacher/FindingImmo)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=FindingImmo&metric=bugs&sanitize=true)](https://sonarcloud.io/dashboard?id=FindingImmo)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=FindingImmo&metric=code_smells&sanitize=true)](https://sonarcloud.io/dashboard?id=FindingImmo)
+[![Status](https://sonarcloud.io/api/project_badges/measure?project=FindingImmo&metric=alert_status&sanitize=true)](https://sonarcloud.io/dashboard?id=FindingImmo)
 
 ## Stack
 
